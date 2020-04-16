@@ -13,6 +13,7 @@ jest.mock('./test/server', () => {})
 // instead, we'll use the same handlers we use for the service worker
 // as a mock fetch
 beforeEach(() => {
+  window.localStorage.clear()
   jest.spyOn(window, 'fetch').mockImplementation(fetchMock)
 })
 

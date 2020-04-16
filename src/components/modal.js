@@ -1,39 +1,9 @@
-/** @jsx jsx */
-/** @jsxFrag React.Fragment */
-import {jsx} from '@emotion/core'
+export * from './modal.final'
 
-import React from 'react'
-import {Dialog} from './lib'
+// export * from './modal.exercise'
 
-const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args))
+// 💯 Add `callAll`
+// export * from './modal.extra-1'
 
-const ModalContext = React.createContext()
-
-function Modal(props) {
-  const [isOpen, setIsOpen] = React.useState(false)
-
-  return <ModalContext.Provider value={[isOpen, setIsOpen]} {...props} />
-}
-
-function ModalDismissButton({children: child}) {
-  const [, setIsOpen] = React.useContext(ModalContext)
-  return React.cloneElement(child, {
-    onClick: callAll(() => setIsOpen(false), child.props.onClick),
-  })
-}
-
-function ModalOpenButton({children: child}) {
-  const [, setIsOpen] = React.useContext(ModalContext)
-  return React.cloneElement(child, {
-    onClick: callAll(() => setIsOpen(true), child.props.onClick),
-  })
-}
-
-function ModalContents(props) {
-  const [isOpen, setIsOpen] = React.useContext(ModalContext)
-  return (
-    <Dialog isOpen={isOpen} onDismiss={() => setIsOpen(false)} {...props} />
-  )
-}
-
-export {Modal, ModalDismissButton, ModalOpenButton, ModalContents}
+// 💯 Create ModalContentsBase
+// export * from './modal.extra-2'

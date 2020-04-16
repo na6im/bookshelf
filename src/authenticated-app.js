@@ -158,4 +158,4 @@ function AppRoutes() {
   )
 }
 
-export default AuthenticatedApp
+export {AuthenticatedApp}

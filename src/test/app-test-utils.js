@@ -7,8 +7,6 @@ import {AuthProvider} from 'context/auth-context'
 import {buildUser} from './generate'
 import * as usersDB from './data/users'
 
-jest.mock('context/auth-context')
-
 const queryConfig = {
   retry: 0,
   useErrorBoundary: true,

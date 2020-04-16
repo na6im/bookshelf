@@ -3,7 +3,6 @@
 import {jsx} from '@emotion/core'
 
 import React from 'react'
-import {bootstrapAppData} from 'utils/bootstrap'
 import * as authClient from 'utils/auth-client'
 import {useAsync} from 'utils/use-async'
 import {FullPageSpinner, FullPageErrorFallback} from 'components/lib'
@@ -11,12 +10,9 @@ import {FullPageSpinner, FullPageErrorFallback} from 'components/lib'
 const AuthContext = React.createContext()
 AuthContext.displayName = 'AuthContext'
 
-const appDataPromise = bootstrapAppData()
-
 function AuthProvider(props) {
   const {
-    data,
-    status,
+    data: user,
     error,
     isLoading,
     isIdle,
@@ -24,33 +20,19 @@ function AuthProvider(props) {
     isSuccess,
     run,
     setData,
+    status,
   } = useAsync()
 
-  React.useLayoutEffect(() => {
-    run(appDataPromise)
+  React.useEffect(() => {
+    run(authClient.getUser())
   }, [run])
 
-  const login = React.useCallback(
-    form => authClient.login(form).then(user => setData({user})),
-    [setData],
-  )
-  const register = React.useCallback(
-    form => authClient.register(form).then(user => setData({user})),
-    [setData],
-  )
-  const logout = React.useCallback(() => {
+  const login = form => authClient.login(form).then(user => setData(user))
+  const register = form => authClient.register(form).then(user => setData(user))
+  const logout = () => {
     authClient.logout()
     setData(null)
-  }, [setData])
-
-  const user = data?.user
-
-  const value = React.useMemo(() => ({user, login, logout, register}), [
-    login,
-    logout,
-    register,
-    user,
-  ])
+  }
 
   if (isLoading || isIdle) {
     return <FullPageSpinner />
@@ -61,6 +43,7 @@ function AuthProvider(props) {
   }
 
   if (isSuccess) {
+    const value = {user, login, register, logout}
     return <AuthContext.Provider value={value} {...props} />
   }
 

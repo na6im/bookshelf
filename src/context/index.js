@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router} from 'react-router-dom'
-import {ReactQueryConfigProvider} from 'react-query'
 import {homepage} from '../../package.json'
+import {ReactQueryConfigProvider} from 'react-query'
 import {AuthProvider} from './auth-context'
 
 const fullUrl = new URL(homepage)
