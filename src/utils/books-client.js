@@ -1,11 +1,3 @@
-import {client} from './api-client'
+export * from './books-client.final'
 
-function search({query = ''}) {
-  return client(`books?query=${encodeURIComponent(query)}`)
-}
-
-function read(bookId) {
-  return client(`books/${bookId}`)
-}
-
-export {search, read}
+// export * from './books-client.exercise'

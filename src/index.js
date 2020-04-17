@@ -2,14 +2,8 @@ import {loadDevTools} from './dev-tools/load'
 import './bootstrap'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {App} from './app'
-import {AppProviders} from './context'
+import {DiscoverBooksScreen} from './discover'
 
 loadDevTools(() => {
-  ReactDOM.render(
-    <AppProviders>
-      <App />
-    </AppProviders>,
-    document.getElementById('root'),
-  )
+  ReactDOM.render(<DiscoverBooksScreen />, document.getElementById('root'))
 })
