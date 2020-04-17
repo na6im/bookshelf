@@ -27,9 +27,5 @@ function getToken() {
   return window.localStorage.getItem(localStorageKey)
 }
 
-function isLoggedIn() {
-  return Boolean(getToken())
-}
-
-export {login, register, getToken, getUser, isLoggedIn}
+export {login, register, getToken, getUser}
 export {logout} from './api-client'
