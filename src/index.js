@@ -1,15 +1,9 @@
-import {loadDevTools} from './dev-tools/load'
-import './bootstrap'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import {App} from './app'
-import {AppProviders} from './context'
+export * from './index.final'
 
-loadDevTools(() => {
-  ReactDOM.render(
-    <AppProviders>
-      <App />
-    </AppProviders>,
-    document.getElementById('root'),
-  )
-})
+// export * from './index.exercise'
+
+// 💯 create an AuthProvider
+// export * from './index.extra-1'
+
+// 💯 colocate global providers
+// export * from './index.extra-2'

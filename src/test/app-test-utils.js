@@ -3,11 +3,8 @@ import * as rtl from '@testing-library/react'
 import {Router} from 'react-router-dom'
 import {createMemoryHistory} from 'history'
 import {ReactQueryConfigProvider} from 'react-query'
-import {AuthProvider} from 'context/auth-context'
 import {buildUser} from './generate'
 import * as usersDB from './data/users'
-
-jest.mock('context/auth-context')
 
 const queryConfig = {
   retry: 0,
@@ -27,9 +24,7 @@ function render(
   function Wrapper({children}) {
     return (
       <ReactQueryConfigProvider config={queryConfig}>
-        <Router history={history}>
-          <AuthProvider>{children}</AuthProvider>
-        </Router>
+        <Router history={history}>{children}</Router>
       </ReactQueryConfigProvider>
     )
   }

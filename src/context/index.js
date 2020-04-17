@@ -1,27 +1,6 @@
-import React from 'react'
-import {BrowserRouter as Router} from 'react-router-dom'
-import {ReactQueryConfigProvider} from 'react-query'
-import {homepage} from '../../package.json'
-import {AuthProvider} from './auth-context'
+export * from './index.final'
 
-const fullUrl = new URL(homepage)
-const basename = fullUrl.pathname.endsWith('/')
-  ? fullUrl.pathname.slice(0, fullUrl.pathname.length - 1)
-  : fullUrl.pathname
+// export * from './index.exercise'
 
-const queryConfig = {
-  useErrorBoundary: true,
-  refetchAllOnWindowFocus: false,
-}
-
-function AppProviders({children}) {
-  return (
-    <ReactQueryConfigProvider config={queryConfig}>
-      <Router basename={basename}>
-        <AuthProvider>{children}</AuthProvider>
-      </Router>
-    </ReactQueryConfigProvider>
-  )
-}
-
-export {AppProviders}
+// 💯 colocate global providers
+// export * from './index.extra-2'
