@@ -1,18 +1,15 @@
-import {within, waitForElementToBeRemoved} from '@testing-library/react'
-import ReactDOM from 'react-dom'
+import {screen} from '@testing-library/react'
+beforeAll(() => {
+  const root = document.createElement('div')
+  root.id = 'root'
+  document.body.append(root)
+})
 
-test('booting up the app from the index file does not break anything', async () => {
-  // setup
-  const div = document.createElement('div')
-  div.setAttribute('id', 'root')
-  document.body.appendChild(div)
-
-  // run the file and wait for things to settle.
+test('renders the app', () => {
   require('..')
-  const {getByLabelText} = within(document.body)
-  await waitForElementToBeRemoved(() => getByLabelText(/loading/i))
 
-  // cleanup
-  ReactDOM.unmountComponentAtNode(div)
-  document.body.removeChild(div)
+  screen.getByTitle('Bookshelf')
+  screen.getByRole('heading', {name: /Bookshelf/i})
+  screen.getByRole('button', {name: /Login/i})
+  screen.getByRole('button', {name: /Register/i})
 })
